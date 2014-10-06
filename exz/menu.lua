@@ -1,5 +1,6 @@
 
 require("awful.widget")
+require("awful.util")
 
 local image = image
 local awesome = awesome
@@ -15,7 +16,12 @@ myawesomemenu = {
    { "manual", config.terminal .. " -e man awesome" },
    { "edit config", config.editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "logout", function ()
+        awful.util.spawn("gnome-session-quit")
+   end },
+   { "shutdown", function ()
+        awful.util.spawn("gnome-session-quit --power-off")
+   end }
 }
 
 mymainmenu = awful.menu(
