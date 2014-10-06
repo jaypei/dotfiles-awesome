@@ -10,5 +10,6 @@ require("exz.wibox")
 require("exz.keys")
 require("exz.rules")
 require("exz.signals")
+require("exz.startup")
 
 exz.notify.info("Awesome", "Happy hacking!")

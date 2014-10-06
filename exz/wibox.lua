@@ -53,7 +53,7 @@ datewidget = widget({ type = "textbox" })
 vicious.register(datewidget, vicious.widgets.date, "%R", 61)
 -- Register buttons
 datewidget:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () utils.exec("pylendar.py") end)
+  awful.button({ }, 1, function () utils.texec("cal && read") end)
 ))
 
 
