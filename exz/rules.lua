@@ -25,20 +25,20 @@ awful.rules.rules = {
       }
    },
    {
-      rule = {class = "MPlayer" },
+      rule_any = { class = { "MPlayer", "pinentry" } },
       properties = { floating = true }
    },
    {
-      rule = { class = "pinentry" },
-      properties = { floating = true }
-   },
-   {
-      rule = { class = "gimp" },
-      properties = { floating = true }
+      rule = { class = "Gimp" },
+      properties = { tag = exz_tag.tags[scount][8], floating = false }
    },
    {
       rule = { class = "Emacs", instance = "emacs" },
       properties = { tag = exz_tag.tags[scount][2] }
+   },
+   {
+      rule = { class = "Firefox", name = "Youdao translation" },
+      properties = { floating = true }
    },
    {
       rule = { class = "Emacs", instance = "_Remember_" },
@@ -46,7 +46,7 @@ awful.rules.rules = {
       callback = awful.titlebar.add
    },
    {
-      rule = { class = "Firefox",  instance = "Navigator" },
+      rule_any = { class = { "Firefox", "Chromium-browser" } },
       properties = { tag = exz_tag.tags[scount][3] }
    },
    {
@@ -57,7 +57,4 @@ awful.rules.rules = {
       rule = { class = "Thunderbird" },
       properties = { tag = exz_tag.tags[scount][4] }
    },
-   -- Set Firefox to always map on tags number 2 of screen 1.
-   -- { rule = { class = "Firefox" },
-   --   properties = { tag = tags[1][2] } },
 }

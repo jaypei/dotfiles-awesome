@@ -6,7 +6,7 @@ module("exz.config")
 -- terminal = "x-terminal-emulator"
 terminal = "urxvt"
 
-default_editor = "emacs"
+editor = "emacs -nw"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -19,5 +19,4 @@ modkey = "Mod4"
 -- DO NOT EDIT --
 home = os.getenv("HOME")
 awconf_dir = home .. "/.config/awesome"
-editor = os.getenv("EDITOR") or default_editor
 editor_cmd = terminal .. " -e " .. editor
