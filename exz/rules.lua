@@ -9,6 +9,7 @@ local screen = screen
 module("exz.rules")
 
 local scount = screen.count()
+local main_screen = 1
 
 -- Use xprop to view class and instance
 
@@ -30,11 +31,11 @@ awful.rules.rules = {
    },
    {
       rule = { class = "Gimp" },
-      properties = { tag = exz_tag.tags[scount][8], floating = false }
+      properties = { tag = exz_tag.tags[main_screen][8], floating = false }
    },
    {
       rule = { class = "Emacs", instance = "emacs" },
-      properties = { tag = exz_tag.tags[scount][2] }
+      properties = { tag = exz_tag.tags[main_screen][2] }
    },
    {
       rule = { class = "Firefox", name = "Youdao translation" },
@@ -47,14 +48,14 @@ awful.rules.rules = {
    },
    {
       rule_any = { class = { "Firefox", "Chromium-browser" } },
-      properties = { tag = exz_tag.tags[scount][3] }
+      properties = { tag = exz_tag.tags[main_screen][3] }
    },
    {
       rule = { class = "VirtualBox" },
-      properties = { tag = exz_tag.tags[scount][9] }
+      properties = { tag = exz_tag.tags[main_screen][9] }
    },
    {
       rule = { class = "Thunderbird" },
-      properties = { tag = exz_tag.tags[scount][4] }
+      properties = { tag = exz_tag.tags[main_screen][4] }
    },
 }

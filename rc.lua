@@ -74,23 +74,7 @@ require("exz.keys")
 
 
 -- | Rules | --
-
-awful.rules.rules = {
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     -- size_hints_honor = false,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "gcolor2" },
-      properties = { floating = true } },
-    { rule = { class = "xmag" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-}
+require("exz.rules")
 
 -- | Signals | --
 
