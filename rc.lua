@@ -28,14 +28,6 @@ local home   = config.home
 local exec   = utils.exec
 local shexec = utils.sexec
 
-modkey        = config.modkey
-terminal      = config.terminal
-tmux          = config.terminal .. " -e tmux"
-ncmpcpp       = config.terminal .. " -geometry 254x60+80+60 -e ncmpcpp"
-newsbeuter    = config.terminal .. " -g 210x50+50+50 -e newsbeuter"
-browser       = config.browser
-filemanager   = config.filemanager
-
 -- | Theme | --
 require("exz.theme")
 
@@ -60,14 +52,6 @@ local mywibox = exz.wibox.mywibox
 local mypromptbox = exz.wibox.mypromptbox
 local mylayoutbox = exz.wibox.mylayoutbox
 
-
--- | Mouse bindings | --
-
-root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mainmenu:toggle() end)
-    -- awful.button({ }, 4, awful.tag.viewnext),
-    -- awful.button({ }, 5, awful.tag.viewprev)
-))
 
 -- | Key bindings | --
 require("exz.keys")
@@ -151,8 +135,8 @@ end
 -- | Autostart | --
 
 os.execute("pkill compton")
-os.execute("setxkbmap -layout 'us,ua' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:menu' &")
+-- os.execute("setxkbmap -layout 'us,ua' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:menu' &")
 run_once("parcellite")
 run_once("kbdd")
--- run_once("compton")
+run_once("compton")
 

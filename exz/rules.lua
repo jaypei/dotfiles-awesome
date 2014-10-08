@@ -58,4 +58,8 @@ awful.rules.rules = {
       rule = { class = "Thunderbird" },
       properties = { tag = exz_tag.tags[main_screen][4] }
    },
+   {
+      rule = { class= "Thunar" },
+      properties = { tag = exz_tag.tags[main_screen][5] }
+   }
 }

@@ -9,20 +9,14 @@ lain.widgets = require("lain.widgets")
 local vicious = require("vicious")
 local require = require
 local client = client
+local markups = require("exz.widgets.markups")
+
 
 module("exz.wibox")
 
--- | Markup | --
-
-markup = lain.util.markup
-
-space3 = markup.font("Terminus 3", " ")
-space2 = markup.font("Terminus 2", " ")
-vspace1 = '<span font="Terminus 3"> </span>'
-vspace2 = '<span font="Terminus 3">  </span>'
-clockgf = beautiful.clockgf
-
 -- | Widgets | --
+
+markup = markups.markup
 
 spr = wibox.widget.imagebox()
 spr:set_image(beautiful.spr)
@@ -41,85 +35,22 @@ widget_display_c = wibox.widget.imagebox()
 widget_display_c:set_image(beautiful.widget_display_c)
 
 
--- | Mail | --
-
-mail_widget = wibox.widget.textbox()
-vicious.register(mail_widget, vicious.widgets.gmail, vspace1 .. "${count}" .. vspace1, 1200)
-
-widget_mail = wibox.widget.imagebox()
-widget_mail:set_image(beautiful.widget_mail)
-mailwidget = wibox.widget.background()
-mailwidget:set_widget(mail_widget)
-mailwidget:set_bgimage(beautiful.widget_display)
-
 -- | CPU / TMP | --
-
-cpu_widget = lain.widgets.cpu({
-    settings = function()
-        -- widget:set_markup(space3 .. cpu_now.usage .. "%" .. markup.font("Tamsyn 4", " "))
-    end
-})
-
-widget_cpu = wibox.widget.imagebox()
-widget_cpu:set_image(beautiful.widget_cpu)
-cpuwidget = wibox.widget.background()
-cpuwidget:set_widget(cpu_widget)
-cpuwidget:set_bgimage(beautiful.widget_display)
-
--- tmp_widget = wibox.widget.textbox()
--- vicious.register(tmp_widget, vicious.widgets.thermal, vspace1 .. "$1°C" .. vspace1, 9, "thermal_zone0")
-
--- widget_tmp = wibox.widget.imagebox()
--- widget_tmp:set_image(beautiful.widget_tmp)
--- tmpwidget = wibox.widget.background()
--- tmpwidget:set_widget(tmp_widget)
--- tmpwidget:set_bgimage(beautiful.widget_display)
+widget_cpu = require("exz.widgets.cpu")
 
 -- | MEM | --
-
-mem_widget = lain.widgets.mem({
-    settings = function()
-        -- widget:set_markup(space3 .. mem_now.used .. "MB" .. markup.font("Tamsyn 4", " "))
-    end
-})
-
-widget_mem = wibox.widget.imagebox()
-widget_mem:set_image(beautiful.widget_mem)
-memwidget = wibox.widget.background()
-memwidget:set_widget(mem_widget)
-memwidget:set_bgimage(beautiful.widget_display)
+widget_mem = require("exz.widgets.mem")
 
 -- | FS | --
-
-fs_widget = wibox.widget.textbox()
-vicious.register(fs_widget, vicious.widgets.fs, vspace1 .. "${/ avail_gb}GB" .. vspace1, 2)
-
-widget_fs = wibox.widget.imagebox()
-widget_fs:set_image(beautiful.widget_fs)
-fswidget = wibox.widget.background()
-fswidget:set_widget(fs_widget)
-fswidget:set_bgimage(beautiful.widget_display)
+widget_fs = require("exz.widgets.fs")
 
 -- | NET | --
-
-local net_widgetdl = require("exz.widget")
-
-widget_netdl = wibox.widget.imagebox()
-widget_netdl:set_image(beautiful.widget_netdl)
-netwidgetdl = wibox.widget.background()
-netwidgetdl:set_widget(net_widgetdl)
-netwidgetdl:set_bgimage(beautiful.widget_display)
-
-widget_netul = wibox.widget.imagebox()
-widget_netul:set_image(beautiful.widget_netul)
-netwidgetul = wibox.widget.background()
-netwidgetul:set_widget(net_widgetul)
-netwidgetul:set_bgimage(beautiful.widget_display)
+widget_net = require("exz.widgets.net")
 
 -- | Clock / Calendar | --
 
-mytextclock    = awful.widget.textclock(markup(clockgf, space3 .. "%H:%M" .. markup.font("Tamsyn 3", " ")))
-mytextcalendar = awful.widget.textclock(markup(clockgf, space3 .. "%Y-%m-%d"))
+mytextclock    = awful.widget.textclock(markup(markups.clockgf, markups.space3 .. "%H:%M" .. markup.font("Tamsyn 3", " ")))
+mytextcalendar = awful.widget.textclock(markup(markups.clockgf, markups.space3 .. "%Y-%m-%d"))
 
 widget_clock = wibox.widget.imagebox()
 widget_clock:set_image(beautiful.widget_clock)
@@ -223,37 +154,37 @@ for s = 1, screen.count() do
     
     right_layout:add(spr)
 
-    right_layout:add(widget_cpu)
+    right_layout:add(widget_cpu["icon"])
     right_layout:add(widget_display_l)
-    right_layout:add(cpuwidget)
+    right_layout:add(widget_cpu["widget"])
     right_layout:add(widget_display_r)
     right_layout:add(spr5px)
 
     right_layout:add(spr)
 
-    right_layout:add(widget_mem)
+    right_layout:add(widget_mem["icon"])
     right_layout:add(widget_display_l)
-    right_layout:add(memwidget)
+    right_layout:add(widget_mem["widget"])
     right_layout:add(widget_display_r)
     right_layout:add(spr5px)
 
     right_layout:add(spr)
 
-    right_layout:add(widget_fs)
+    right_layout:add(widget_fs["icon"])
     right_layout:add(widget_display_l)
-    right_layout:add(fswidget)
+    right_layout:add(widget_fs["widget"])
     right_layout:add(widget_display_r)
     right_layout:add(spr5px)
 
     right_layout:add(spr)
 
-    right_layout:add(widget_netdl)
+    right_layout:add(widget_net["dl_icon"])
     right_layout:add(widget_display_l)
-    right_layout:add(netwidgetdl)
+    right_layout:add(widget_net["dl_widget"])
     right_layout:add(widget_display_c)
-    right_layout:add(netwidgetul)
+    right_layout:add(widget_net["ul_widget"])
     right_layout:add(widget_display_r)
-    right_layout:add(widget_netul)
+    right_layout:add(widget_net["ul_icon"])
 
     right_layout:add(spr)
 

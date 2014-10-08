@@ -24,14 +24,14 @@ local shexec = utils.sexec
 module("exz.keys")
 
 
--- Mouse bindings
+-- | Mouse bindings | --
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () exz_menu.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
--- Key bindings
+-- | Key bindings | --
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -64,7 +64,6 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(config.terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q",
        function ()
@@ -82,6 +81,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(exz_tag.layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    awful.key({ modkey, "Control" }, "r",      awesome.restart),
+    awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
+    awful.key({ modkey,           }, "Return", function () exec(config.terminal) end),
+    awful.key({ modkey,           }, "s",      function () exec(config.filemanager) end),
+    awful.key({ modkey            }, "Print",  function () exec("gnome-screenshot") end),
+    awful.key({ modkey            }, "a",  function () exec("gnome-screenshot -a") end),
+    awful.key({ modkey, "Control" }, "m",      function () shexec(ncmpcpp) end),
 
     -- Prompt
     awful.key({ modkey }, "r", function ()
@@ -122,37 +128,7 @@ globalkeys = awful.util.table.join(
     cyclefocus.key({ "Mod1", }, "Tab", 1, {
         cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
         keys = {'Tab', 'ISO_Left_Tab'}
-    }),
-    awful.key({ modkey, "Control" }, "r",      awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
-    awful.key({ modkey,           }, "Return", function () exec(terminal) end),
-    awful.key({ modkey,           }, "t",      function () exec(tmux) end),
-    awful.key({ modkey,           }, "space",  function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space",  function () awful.layout.inc(layouts, -1) end),
-    awful.key({ modkey,           }, "u",      function () exec("urxvt -geometry 254x60+80+60") end),
-    awful.key({ modkey,           }, "s",      function () exec(filemanager) end),
-    awful.key({ modkey            }, "g",      function () exec("gvim") end),
-    awful.key({ modkey            }, "Print",  function () exec("screengrab") end),
-    awful.key({ modkey, "Control" }, "Print",  function () exec("screengrab --region") end),
-    awful.key({ modkey, "Shift"   }, "Print",  function () exec("screengrab --active") end),
-    awful.key({ modkey            }, "7",      function () exec("firefox") end),
-    awful.key({ modkey            }, "8",      function () exec("chromium") end),
-    awful.key({ modkey            }, "9",      function () exec("dwb") end),
-    awful.key({ modkey            }, "0",      function () exec("thunderbird") end),
-    awful.key({ modkey            }, "'",      function () exec("leafpad") end),
-    awful.key({ modkey            }, "\\",     function () exec("sublime_text") end),
-    awful.key({ modkey            }, "i",      function () exec("gcolor2") end),
-    awful.key({ modkey            }, "`",      function () exec("xwinmosaic") end),
-    awful.key({ modkey, "Control" }, "m",      function () shexec(ncmpcpp) end),
-    awful.key({ modkey, "Control" }, "f",      function () shexec(newsbeuter) end),
-    awful.key({ modkey            }, "Pause",  function () exec("VirtualBox --startvm 'a8d5ac56-b0d2-4f7f-85be-20666d2f46df'") end)
-    -- awful.key({ modkey }, "x",
-    --           function ()
-    --               awful.prompt.run({ prompt = "Run Lua code: " },
-    --               mypromptbox[mouse.screen].widget,
-    --               awful.util.eval, nil,
-    --               awful.util.getdir("cache") .. "/history_eval")
-    --           end)
+    })
 )
 
 clientkeys = awful.util.table.join(
@@ -192,84 +168,43 @@ end
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
-    globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = mouse.screen
-                        if exz_tag.tags[screen][i] then
-                            awful.tag.viewonly(exz_tag.tags[screen][i])
-                        end
-                  end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = mouse.screen
-                      if exz_tag.tags[screen][i] then
-                          awful.tag.viewtoggle(exz_tag.tags[screen][i])
-                      end
-                  end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus and exz_tag.tags[client.focus.screen][i] then
-                          awful.client.movetotag(exz_tag.tags[client.focus.screen][i])
-                      end
-                  end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus and exz_tag.tags[client.focus.screen][i] then
-                          awful.client.toggletag(exz_tag.tags[client.focus.screen][i])
-                      end
-                  end))
-end
 
-clientbuttons = awful.util.table.join(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
-
--- Set keys
-root.keys(globalkeys)
-
-
-
-
-
-
-for i = 1, 9 do
-    globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = mouse.screen
-                        local tag = awful.tag.gettags(screen)[i]
-                        if tag then
-                           awful.tag.viewonly(tag)
-                        end
-                  end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = mouse.screen
-                      local tag = awful.tag.gettags(screen)[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
-                      end
-                  end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
-                          if tag then
-                              awful.client.movetotag(tag)
-                          end
-                     end
-                  end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
-                          if tag then
-                              awful.client.toggletag(tag)
-                          end
-                      end
-                  end))
+   globalkeys = awful.util.table.join(
+      globalkeys,
+      awful.key({ modkey }, "#" .. i + 9,
+         function ()
+            local screen = mouse.screen
+            local tag = awful.tag.gettags(screen)[i]
+            if tag then
+               awful.tag.viewonly(tag)
+            end
+      end),
+      awful.key({ modkey, "Control" }, "#" .. i + 9,
+         function ()
+            local screen = mouse.screen
+            local tag = awful.tag.gettags(screen)[i]
+            if tag then
+               awful.tag.viewtoggle(tag)
+            end
+      end),
+      awful.key({ modkey, "Shift" }, "#" .. i + 9,
+         function ()
+            if client.focus then
+               local tag = awful.tag.gettags(client.focus.screen)[i]
+               if tag then
+                  awful.client.movetotag(tag)
+               end
+            end
+      end),
+      awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+         function ()
+            if client.focus then
+               local tag = awful.tag.gettags(client.focus.screen)[i]
+               if tag then
+                  awful.client.toggletag(tag)
+               end
+            end
+   end))
 end
 
 clientbuttons = awful.util.table.join(
@@ -286,4 +221,5 @@ awful.menu.menu_keys = {
     close = { "q", "Escape" }
 }
 
+-- Set keys
 root.keys(globalkeys)
