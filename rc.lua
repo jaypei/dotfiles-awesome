@@ -1,15 +1,174 @@
+local gears      = require("gears")
+local awful      = require("awful")
+awful.rules      = require("awful.rules")
+                   require("awful.autofocus")
+local wibox      = require("wibox")
+local beautiful  = require("beautiful")
+local vicious    = require("vicious")
+local naughty    = require("naughty")
+local lain       = require("lain")
+local cyclefocus = require('cyclefocus')
 
-require("awful.autofocus")
-require("exz.notify")
+local config = require("exz.config")
+local utils = require("exz.utils")
+
+-- | Error handling | --
 
 require("exz.error_handling")
-require("exz.theme")
-require("exz.tag")
-require("exz.menu")
-require("exz.wibox")
-require("exz.keys")
-require("exz.rules")
-require("exz.signals")
-require("exz.startup")
 
-exz.notify.info("Awesome", "Happy hacking!")
+-- | Fix's | --
+
+-- Java GUI's fix:
+
+awful.util.spawn_with_shell("wmname LG3D")
+
+-- | Variable definitions | --
+
+local home   = config.home
+local exec   = utils.exec
+local shexec = utils.sexec
+
+modkey        = config.modkey
+terminal      = config.terminal
+tmux          = config.terminal .. " -e tmux"
+ncmpcpp       = config.terminal .. " -geometry 254x60+80+60 -e ncmpcpp"
+newsbeuter    = config.terminal .. " -g 210x50+50+50 -e newsbeuter"
+browser       = config.browser
+filemanager   = config.filemanager
+
+-- | Theme | --
+require("exz.theme")
+
+-- | Table of layouts | --
+
+require("exz.tag")
+local layouts = exz.tag.layouts
+
+-- | Tags | --
+
+local tags = exz.tag.tags
+
+-- | Menu | --
+
+require("exz.menu")
+local mainmenu = exz.menu.mainmenu
+
+
+require("exz.wibox")
+
+local mywibox = exz.wibox.mywibox
+local mypromptbox = exz.wibox.mypromptbox
+local mylayoutbox = exz.wibox.mylayoutbox
+
+
+-- | Mouse bindings | --
+
+root.buttons(awful.util.table.join(
+    awful.button({ }, 3, function () mainmenu:toggle() end)
+    -- awful.button({ }, 4, awful.tag.viewnext),
+    -- awful.button({ }, 5, awful.tag.viewprev)
+))
+
+-- | Key bindings | --
+require("exz.keys")
+
+
+-- | Rules | --
+
+awful.rules.rules = {
+    { rule = { },
+      properties = { border_width = beautiful.border_width,
+                     border_color = beautiful.border_normal,
+                     focus = awful.client.focus.filter,
+                     -- size_hints_honor = false,
+                     raise = true,
+                     keys = clientkeys,
+                     buttons = clientbuttons } },
+    { rule = { class = "gcolor2" },
+      properties = { floating = true } },
+    { rule = { class = "xmag" },
+      properties = { floating = true } },
+    { rule = { class = "gimp" },
+      properties = { floating = true } },
+}
+
+-- | Signals | --
+
+client.connect_signal("manage", function (c, startup)
+    c:connect_signal("mouse::enter", function(c)
+        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+            and awful.client.focus.filter(c) then
+            client.focus = c
+        end
+    end)
+
+    if not startup then
+        if not c.size_hints.user_position and not c.size_hints.program_position then
+            awful.placement.no_overlap(c)
+            awful.placement.no_offscreen(c)
+        end
+    end
+
+    local titlebars_enabled = false
+    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
+        local buttons = awful.util.table.join(
+                awful.button({ }, 1, function()
+                    client.focus = c
+                    c:raise()
+                    awful.mouse.client.move(c)
+                end),
+                awful.button({ }, 3, function()
+                    client.focus = c
+                    c:raise()
+                    awful.mouse.client.resize(c)
+                end)
+                )
+
+        local left_layout = wibox.layout.fixed.horizontal()
+        left_layout:add(awful.titlebar.widget.iconwidget(c))
+        left_layout:buttons(buttons)
+
+        local right_layout = wibox.layout.fixed.horizontal()
+        right_layout:add(awful.titlebar.widget.floatingbutton(c))
+        right_layout:add(awful.titlebar.widget.maximizedbutton(c))
+        right_layout:add(awful.titlebar.widget.stickybutton(c))
+        right_layout:add(awful.titlebar.widget.ontopbutton(c))
+        right_layout:add(awful.titlebar.widget.closebutton(c))
+
+        local middle_layout = wibox.layout.flex.horizontal()
+        local title = awful.titlebar.widget.titlewidget(c)
+        title:set_align("center")
+        middle_layout:add(title)
+        middle_layout:buttons(buttons)
+
+        local layout = wibox.layout.align.horizontal()
+        layout:set_left(left_layout)
+        layout:set_right(right_layout)
+        layout:set_middle(middle_layout)
+
+        awful.titlebar(c):set_widget(layout)
+    end
+end)
+
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- | run_once | --
+
+function run_once(cmd)
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+     findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+end
+
+-- | Autostart | --
+
+os.execute("pkill compton")
+os.execute("setxkbmap -layout 'us,ua' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:menu' &")
+run_once("parcellite")
+run_once("kbdd")
+-- run_once("compton")
+

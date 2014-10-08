@@ -2,7 +2,6 @@
 require("awful.widget")
 require("awful.util")
 
-local image = image
 local awesome = awesome
 
 local awful = require("awful")
@@ -24,7 +23,7 @@ myawesomemenu = {
    end }
 }
 
-mymainmenu = awful.menu(
+mainmenu = awful.menu(
    {
       items = {
          { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -34,9 +33,9 @@ mymainmenu = awful.menu(
    }
 )
 
-mylauncher = awful.widget.launcher(
-   {
-      image = image(beautiful.awesome_icon),
-      menu = mymainmenu
-   }
-)
+-- mylauncher = awful.widget.launcher(
+--    {
+--       image = image(beautiful.awesome_icon),
+--       menu = mymainmenu
+--    }
+-- )
