@@ -8,6 +8,7 @@ local lain = require("lain")
 lain.widgets = require("lain.widgets")
 local vicious = require("vicious")
 local require = require
+local client = client
 
 module("exz.wibox")
 
@@ -118,7 +119,7 @@ netwidgetul:set_bgimage(beautiful.widget_display)
 -- | Clock / Calendar | --
 
 mytextclock    = awful.widget.textclock(markup(clockgf, space3 .. "%H:%M" .. markup.font("Tamsyn 3", " ")))
-mytextcalendar = awful.widget.textclock(markup(clockgf, space3 .. "%a %d %b"))
+mytextcalendar = awful.widget.textclock(markup(clockgf, space3 .. "%Y-%m-%d"))
 
 widget_clock = wibox.widget.imagebox()
 widget_clock:set_image(beautiful.widget_clock)
