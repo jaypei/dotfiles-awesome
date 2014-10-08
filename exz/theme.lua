@@ -8,5 +8,4 @@ local config = require("exz.config")
 
 module("exz.theme")
 
-beautiful.init(config.awconf_dir .. "/themes/zenburn.lua")
--- beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init(config.awconf_dir .. "/themes/" .. config.theme .. "/theme.lua")

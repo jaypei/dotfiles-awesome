@@ -9,41 +9,17 @@ local naughty    = require("naughty")
 local lain       = require("lain")
 local cyclefocus = require('cyclefocus')
 
--- | Theme | --
-
-local theme = "pro-dark"
-
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/" .. theme .. "/theme.lua")
+local config = require("exz.config")
+local utils = require("exz.utils")
 
 -- | Error handling | --
 
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
+require("exz.error_handling")
 
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        if in_error then return end
-        in_error = true
-
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = err })
-        in_error = false
-    end)
-end
+-- | Theme | --
+require("exz.theme")
 
 -- | Fix's | --
-
--- Disable cursor animation:
-
-local oldspawn = awful.util.spawn
-awful.util.spawn = function (s)
-    oldspawn(s, false)
-end
 
 -- Java GUI's fix:
 
@@ -51,27 +27,21 @@ awful.util.spawn_with_shell("wmname LG3D")
 
 -- | Variable definitions | --
 
-local home   = os.getenv("HOME")
-local exec   = function (s) oldspawn(s, false) end
-local shexec = awful.util.spawn_with_shell
+local home   = config.home
+local exec   = utils.exec
+local shexec = utils.sexec
 
-modkey        = "Mod4"
-terminal      = "urxvt"
-tmux          = "urxvt -e tmux"
-termax        = "urxvt --geometry 1680x1034+0+22"
-rootterm      = "sudo -i termite"
-ncmpcpp       = "urxvt -geometry 254x60+80+60 -e ncmpcpp"
-newsbeuter    = "urxvt -g 210x50+50+50 -e newsbeuter"
-browser       = "firefox"
-filemanager   = "spacefm"
-en_uk         = "setxkbmap -layout 'us,ua' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:menu' &"
-en_ru         = "setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:menu' &"
-configuration = termax .. ' -e "vim -O $HOME/.config/awesome/rc.lua $HOME/.config/awesome/themes/' ..theme.. '/theme.lua"'
+modkey        = config.modkey
+terminal      = config.terminal
+tmux          = config.terminal .. " -e tmux"
+ncmpcpp       = config.terminal .. " -geometry 254x60+80+60 -e ncmpcpp"
+newsbeuter    = config.terminal .. " -g 210x50+50+50 -e newsbeuter"
+browser       = config.browser
+filemanager   = config.filemanager
 
 -- | Table of layouts | --
 
-local layouts =
-{
+local layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -107,7 +77,6 @@ menu_main = {
 mainmenu = awful.menu({ items = {
   { " awesome",       menu_main   },
   { " file manager",  filemanager },
-  { " root terminal", rootterm    },
   { " user terminal", terminal    }}})
 
 -- | Markup | --
@@ -496,11 +465,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r",      awesome.restart),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
     awful.key({ modkey,           }, "Return", function () exec(terminal) end),
-    awful.key({ modkey, "Control" }, "Return", function () exec(rootterm) end),
     awful.key({ modkey,           }, "t",      function () exec(tmux) end),
     awful.key({ modkey,           }, "space",  function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space",  function () awful.layout.inc(layouts, -1) end),
-    awful.key({ modkey            }, "a",      function () shexec(configuration) end),
     awful.key({ modkey,           }, "u",      function () exec("urxvt -geometry 254x60+80+60") end),
     awful.key({ modkey,           }, "s",      function () exec(filemanager) end),
     awful.key({ modkey            }, "g",      function () exec("gvim") end),
@@ -517,8 +484,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey            }, "`",      function () exec("xwinmosaic") end),
     awful.key({ modkey, "Control" }, "m",      function () shexec(ncmpcpp) end),
     awful.key({ modkey, "Control" }, "f",      function () shexec(newsbeuter) end),
-    awful.key({ modkey            }, "F5",     function () exec(en_uk) end),
-    awful.key({ modkey            }, "F6",     function () exec(en_ru) end),
     awful.key({ modkey            }, "Pause",  function () exec("VirtualBox --startvm 'a8d5ac56-b0d2-4f7f-85be-20666d2f46df'") end)
     -- awful.key({ modkey }, "x",
     --           function ()
