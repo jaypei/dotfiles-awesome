@@ -121,6 +121,10 @@ theme.widget_mail = theme.icons .. "/panel/widgets/widget_mail.png"
 theme.widget_netdl = theme.icons .. "/panel/widgets/widget_netdl.png"
 theme.widget_netul = theme.icons .. "/panel/widgets/widget_netul.png"
 
+-- | Battery | --
+
+theme.widget_battery = theme.icons .. "/panel/widgets/widget_battery.png"
+
 -- | Misc | --
 
 theme.menu_submenu_icon = theme.icons .. "submenu.png"

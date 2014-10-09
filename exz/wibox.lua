@@ -47,6 +47,9 @@ widget_fs = require("exz.widgets.fs")
 -- | NET | --
 widget_net = require("exz.widgets.net")
 
+-- | NET | --
+widget_battery = require("exz.widgets.battery")
+
 -- | Clock / Calendar | --
 
 mytextclock    = awful.widget.textclock(markup(markups.clockgf, markups.space3 .. "%H:%M" .. markup.font("Tamsyn 3", " ")))
@@ -124,16 +127,16 @@ mypromptbox       = {}
 mylayoutbox       = {}
 
 for s = 1, screen.count() do
-   
+
     mypromptbox[s] = awful.widget.prompt()
-    
+
     mylayoutbox[s] = awful.widget.layoutbox(s)
     mylayoutbox[s]:buttons(awful.util.table.join(
                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
-    
+
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
@@ -149,9 +152,12 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
 
     if s == 1 then
+       right_layout:add(spr)
+       right_layout:add(spr5px)
        right_layout:add(wibox.widget.systray())
+       right_layout:add(spr5px)
     end
-    
+
     right_layout:add(spr)
 
     right_layout:add(widget_cpu["icon"])
@@ -185,6 +191,14 @@ for s = 1, screen.count() do
     right_layout:add(widget_net["ul_widget"])
     right_layout:add(widget_display_r)
     right_layout:add(widget_net["ul_icon"])
+
+    right_layout:add(spr)
+
+    right_layout:add(widget_battery["icon"])
+    right_layout:add(widget_display_l)
+    right_layout:add(widget_battery["widget"])
+    right_layout:add(widget_display_r)
+    right_layout:add(spr5px)
 
     right_layout:add(spr)
 
