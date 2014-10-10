@@ -7,6 +7,7 @@ local markups = require("exz.widgets.markups")
 
 net_widgetdl = wibox.widget.textbox()
 net_widgetul = lain.widgets.net({
+    notify = "off",
     settings = function()
         widget:set_markup(markups.markup.font("Tamsyn 1", "  ") .. net_now.sent)
         net_widgetdl:set_markup(markups.markup.font("Tamsyn 1", " ") .. net_now.received .. markups.markup.font("Tamsyn 1", " "))
