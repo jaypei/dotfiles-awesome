@@ -1,12 +1,9 @@
-local gears      = require("gears")
+require("awful.autofocus")
+
 local awful      = require("awful")
 awful.rules      = require("awful.rules")
-                   require("awful.autofocus")
 local wibox      = require("wibox")
 local beautiful  = require("beautiful")
-local vicious    = require("vicious")
-local naughty    = require("naughty")
-local lain       = require("lain")
 local cyclefocus = require('cyclefocus')
 
 local config = require("exz.config")
@@ -22,35 +19,16 @@ require("exz.error_handling")
 
 awful.util.spawn_with_shell("wmname LG3D")
 
--- | Variable definitions | --
-
-local home   = config.home
-local exec   = utils.exec
-local shexec = utils.sexec
-
 -- | Theme | --
 require("exz.theme")
 
 -- | Table of layouts | --
-
 require("exz.tag")
-local layouts = exz.tag.layouts
-
--- | Tags | --
-
-local tags = exz.tag.tags
 
 -- | Menu | --
 
 require("exz.menu")
-local mainmenu = exz.menu.mainmenu
-
-
 require("exz.wibox")
-
-local mywibox = exz.wibox.mywibox
-local mypromptbox = exz.wibox.mypromptbox
-local mylayoutbox = exz.wibox.mylayoutbox
 
 
 -- | Key bindings | --
@@ -63,12 +41,12 @@ require("exz.rules")
 -- | Signals | --
 
 client.connect_signal("manage", function (c, startup)
-    c:connect_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
+    -- c:connect_signal("mouse::enter", function(c)
+    --     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+    --         and awful.client.focus.filter(c) then
+    --         client.focus = c
+    --     end
+    -- end)
 
     if not startup then
         if not c.size_hints.user_position and not c.size_hints.program_position then
