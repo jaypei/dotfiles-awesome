@@ -22,7 +22,8 @@ awful.rules.rules = {
          border_color = beautiful.border_normal,
          focus = true,
          keys = exz_keys.clientkeys,
-         buttons = exz_keys.clientbuttons
+         buttons = exz_keys.clientbuttons,
+         size_hints_honor = false
       }
    },
    {
