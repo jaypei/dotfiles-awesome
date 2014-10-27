@@ -18,7 +18,7 @@ beautiful.init(config.awconf_dir .. "/themes/" .. config.theme .. "/theme.lua")
 
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-        gears.wallpaper.tiled(beautiful.wallpaper, s)
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
         -- gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     end
 end

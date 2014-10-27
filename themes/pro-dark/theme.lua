@@ -9,7 +9,7 @@
 
 theme            = {}
 theme.icons      = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark/icons/"
-theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark/wallpapers/pro-dark-shadow.png"
+theme.wallpaper  = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark/wallpapers/pro-dark.png"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
 theme.font       = "Fantastic Mono 10"
 
@@ -20,8 +20,7 @@ theme.fg_urgent  = "#CC9393"
 theme.bg_normal  = "#3F3F3F"
 theme.bg_focus   = "#5a5a5a"
 theme.bg_urgent  = "#3F3F3F"
--- theme.bg_systray = "#343434"
-theme.bg_systray = "#343434" -- transparent tray fix 
+theme.bg_systray = "#343434" -- transparent tray fix
 
 theme.clockgf    = "#d5d5c3"
 
@@ -101,7 +100,6 @@ theme.widget_cal   = theme.icons .. "/panel/widgets/widget_cal.png"
 -- | CPU / TMP | --
 
 theme.widget_cpu    = theme.icons .. "/panel/widgets/widget_cpu.png"
--- theme.widget_tmp = theme.icons .. "/panel/widgets/widget_tmp.png"
 
 -- | MEM | --
 

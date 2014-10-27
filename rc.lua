@@ -8,6 +8,7 @@ local cyclefocus = require('cyclefocus')
 
 local config = require("exz.config")
 local utils = require("exz.utils")
+local vain = require("vain")
 
 -- | Error handling | --
 
@@ -96,8 +97,9 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", vain.util.niceborder_focus)
+client.connect_signal("unfocus", vain.util.niceborder_unfocus)
+
 
 -- | Autostart | --
 

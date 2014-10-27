@@ -2,7 +2,7 @@
 local os = os
 module("exz.config")
 
-theme = "pro-dark"
+theme = "exz"
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "x-terminal-emulator"
