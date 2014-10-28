@@ -10,6 +10,7 @@ local vicious = require("vicious")
 local require = require
 local client = client
 local markups = require("exz.widgets.markups")
+local config = require("exz.config")
 
 
 module("exz.wibox")
@@ -151,7 +152,7 @@ for s = 1, screen.count() do
 
     local right_layout = wibox.layout.fixed.horizontal()
 
-    if s == 1 then
+    if s == config.main_screen then
        right_layout:add(spr)
        right_layout:add(spr5px)
        right_layout:add(wibox.widget.systray())

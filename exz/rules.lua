@@ -5,11 +5,11 @@ local beautiful = require("beautiful")
 local exz_keys = require("exz.keys")
 local exz_tag = require("exz.tag")
 local screen = screen
+local config = require("exz.config")
 
 module("exz.rules")
 
 local scount = screen.count()
-local main_screen = 1
 
 -- Use xprop to view class and instance
 
@@ -32,11 +32,11 @@ awful.rules.rules = {
    },
    {
       rule = { class = "Gimp" },
-      properties = { tag = exz_tag.tags[main_screen][8], floating = false }
+      properties = { tag = exz_tag.tags[config.main_screen][8], floating = false }
    },
    {
       rule = { class = "Emacs", instance = "emacs" },
-      properties = { tag = exz_tag.tags[main_screen][2] }
+      properties = { tag = exz_tag.tags[config.main_screen][2] }
    },
    {
       rule = { class = "Firefox", name = "Youdao translation" },
@@ -49,18 +49,18 @@ awful.rules.rules = {
    },
    {
       rule_any = { class = { "Firefox", "Chromium-browser" } },
-      properties = { tag = exz_tag.tags[main_screen][3] }
+      properties = { tag = exz_tag.tags[config.main_screen][3] }
    },
    {
       rule = { class = "VirtualBox" },
-      properties = { tag = exz_tag.tags[main_screen][9] }
+      properties = { tag = exz_tag.tags[config.main_screen][9] }
    },
    {
       rule = { class = "Thunderbird" },
-      properties = { tag = exz_tag.tags[main_screen][4] }
+      properties = { tag = exz_tag.tags[config.main_screen][4] }
    },
    {
       rule = { class= "Thunar" },
-      properties = { tag = exz_tag.tags[main_screen][5] }
+      properties = { tag = exz_tag.tags[config.main_screen][5] }
    }
 }
