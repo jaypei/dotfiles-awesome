@@ -34,4 +34,7 @@ for s = 1, screen.count() do
       awful.tag.setproperty(t, "mwfact", i==8 and 0.13  or  0.5)
       awful.tag.setproperty(t, "hide",  i==7 and true)
   end
+  awful.layout.set(vain.layout.termfair, tags[s][1])
+  awful.tag.setnmaster(3, tags[s][1])
+  awful.tag.setncol(2, tags[s][1])
 end
