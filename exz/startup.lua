@@ -2,6 +2,7 @@ local awful = require("awful")
 awful.util = require("awful.util")
 local utils = require("exz.utils")
 local os = os
+local std = std
 
 module("exz.startup")
 
@@ -17,4 +18,3 @@ utils.sexec_once("nm-applet &")
 utils.sexec_once("shutter --min_at_startup &")
 utils.sexec_once("sogou-qimpanel")
 utils.sexec_once("xcompmgr &")
-
