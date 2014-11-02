@@ -48,7 +48,7 @@ awful.rules.rules = {
       callback = awful.titlebar.add
    },
    {
-      rule_any = { class = { "Firefox", "Chromium-browser" } },
+      rule_any = { class = { "Firefox", "Chromium-browser", "Chromium" } },
       properties = { tag = exz_tag.tags[config.main_screen][3] }
    },
    {

@@ -10,6 +10,11 @@ os.execute("pkill compton")
 
 -- should disable the fcitx option OverrideSystemXKBSettings
 utils.sexec("/usr/bin/xmodmap ~/.xmodmaprc")
+utils.sexec("fcitx-autostart")
+utils.sexec("xset r rate 300 20")
 utils.sexec_once("kbdd")
 utils.sexec_once("nm-applet &")
 utils.sexec_once("shutter --min_at_startup &")
+utils.sexec_once("sogou-qimpanel")
+utils.sexec_once("xcompmgr &")
+
