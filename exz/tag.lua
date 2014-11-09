@@ -35,6 +35,6 @@ for s = 1, screen.count() do
       awful.tag.setproperty(t, "hide",  i==7 and true)
   end
   awful.layout.set(vain.layout.termfair, tags[s][1])
-  awful.tag.setnmaster(3, tags[s][1])
-  awful.tag.setncol(2, tags[s][1])
+  awful.tag.setnmaster(2, tags[s][1])
+  awful.tag.setncol(1, tags[s][1])
 end
