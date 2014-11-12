@@ -12,6 +12,7 @@ browser = "firefox"
 filemanager = "thunar"
 
 main_screen = 1
+screen_padding = { left = 10, top = 10, right = 10, bottom = 10 }
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -25,3 +26,4 @@ modkey = "Mod4"
 home = os.getenv("HOME")
 awconf_dir = home .. "/.config/awesome"
 editor_cmd = terminal .. " -e " .. editor
+

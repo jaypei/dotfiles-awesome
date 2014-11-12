@@ -5,6 +5,7 @@ local awful = require("awful")
 local screen = screen
 local ipairs = ipairs
 local vain = require("vain")
+local config = require("exz.config")
 
 module("exz.tag")
 
@@ -37,4 +38,5 @@ for s = 1, screen.count() do
   awful.layout.set(vain.layout.termfair, tags[s][1])
   awful.tag.setnmaster(2, tags[s][1])
   awful.tag.setncol(1, tags[s][1])
+  awful.screen.padding(screen[s], config.screen_padding)
 end
