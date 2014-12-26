@@ -1,6 +1,3 @@
 [submodule "lain"]
 	path = lain
-	url = https://github.com/copycat-killer/lain.git
-[submodule "vain"]
-	path = vain
-	url = https://github.com/copycat-killer/vain-again.git
+	url = https://github.com/jaypei/lain.git
