@@ -6,10 +6,24 @@ local exz_keys = require("exz.keys")
 local exz_tag = require("exz.tag")
 local screen = screen
 local config = require("exz.config")
+local mouse = mouse
 
 module("exz.rules")
 
 local scount = screen.count()
+
+function move_client_tag(c, tagidx)
+   awful.client.movetotag(
+      exz_tag.tags[mouse.screen][tagidx], c)
+end
+
+function make_move_client_tag(tagidx)
+   local tagidx = tagidx
+   function fn(c)
+      move_client_tag(c, tagidx)
+   end
+   return fn
+end
 
 -- Use xprop to view class and instance
 
@@ -32,15 +46,12 @@ awful.rules.rules = {
    },
    {
       rule = { class = "Gimp" },
-      properties = { tag = exz_tag.tags[config.main_screen][8], floating = false }
+      properties = { floating = false },
+      callback = make_move_client_tag(8)
    },
    {
       rule = { class = "Emacs", instance = "emacs" },
-      properties = { tag = exz_tag.tags[config.main_screen][2] }
-   },
-   {
-      rule = { class = "Firefox", name = "Youdao translation" },
-      properties = { floating = true }
+      callback = make_move_client_tag(2)
    },
    {
       rule = { class = "Emacs", instance = "_Remember_" },
@@ -49,18 +60,22 @@ awful.rules.rules = {
    },
    {
       rule_any = { class = { "Firefox", "Chromium-browser" } },
-      properties = { tag = exz_tag.tags[config.main_screen][3] }
+      callback = make_move_client_tag(3)
+   },
+   {
+      rule = { class = "Firefox", name = "Youdao translation" },
+      properties = { floating = true }
    },
    {
       rule = { class = "VirtualBox" },
-      properties = { tag = exz_tag.tags[config.main_screen][9] }
+      callback = make_move_client_tag(9)
    },
    {
       rule = { class = "Thunderbird" },
-      properties = { tag = exz_tag.tags[config.main_screen][4] }
+      callback = make_move_client_tag(4)
    },
    {
       rule = { class= "Thunar" },
-      properties = { tag = exz_tag.tags[config.main_screen][5] }
+      callback = make_move_client_tag(5)
    }
 }
