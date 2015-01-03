@@ -1,4 +1,3 @@
-require("awful.rules")
 
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -7,6 +6,7 @@ local exz_tag = require("exz.tag")
 local screen = screen
 local config = require("exz.config")
 local mouse = mouse
+local awful_rules = require("awful.rules")
 
 module("exz.rules")
 
@@ -27,7 +27,7 @@ end
 
 -- Use xprop to view class and instance
 
-awful.rules.rules = {
+awful_rules.rules = {
    -- All clients will match this rule.
    {
       rule = { },
