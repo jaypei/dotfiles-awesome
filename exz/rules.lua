@@ -41,17 +41,8 @@ awful_rules.rules = {
       }
    },
    {
-      rule_any = { class = { "MPlayer", "pinentry" } },
+      rule_any = { class = { "desktop_window", "MPlayer", "pinentry" } },
       properties = { floating = true }
-   },
-   {
-      rule = { class = "Gimp" },
-      properties = { floating = false },
-      callback = make_move_client_tag(8)
-   },
-   {
-      rule = { class = "Emacs", instance = "emacs" },
-      callback = make_move_client_tag(2)
    },
    {
       rule = { class = "Emacs", instance = "_Remember_" },
@@ -60,22 +51,14 @@ awful_rules.rules = {
    },
    {
       rule_any = { class = { "Firefox", "Chromium-browser" } },
-      callback = make_move_client_tag(3)
+      callback = make_move_client_tag(9)
    },
    {
       rule = { class = "Firefox", name = "Youdao translation" },
       properties = { floating = true }
    },
    {
-      rule = { class = "VirtualBox" },
-      callback = make_move_client_tag(9)
-   },
-   {
       rule = { class = "Thunderbird" },
-      callback = make_move_client_tag(4)
-   },
-   {
-      rule = { class= "Thunar" },
-      callback = make_move_client_tag(5)
+      callback = make_move_client_tag(8)
    }
 }
