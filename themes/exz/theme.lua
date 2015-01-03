@@ -39,12 +39,12 @@ theme.menu_width  = 160
 
 -- | Layout | --
 
-theme.layout_termfair      = config_dir .. "/vain/themes/default/layouts/termfairw.png"
-theme.layout_browse        = config_dir .. "/vain/themes/default/layouts/browsew.png"
-theme.layout_gimp          = config_dir .. "/vain/themes/default/layouts/gimpw.png"
-theme.layout_cascade       = config_dir .. "/vain/themes/default/layouts/cascadew.png"
-theme.layout_cascadebrowse = config_dir .. "/vain/themes/default/layouts/cascadebrowsew.png"
-theme.layout_centerwork    = config_dir .. "/vain/themes/default/layouts/centerworkw.png"
+theme.layout_termfair      = config_dir .. "/lain/icons/layout/default/termfairw.png"
+theme.layout_browse        = config_dir .. "/lain/icons/layout/default/browsew.png"
+theme.layout_gimp          = config_dir .. "/lain/icons/layout/default/gimpw.png"
+theme.layout_cascade       = config_dir .. "/lain/icons/layout/default/cascadew.png"
+theme.layout_cascadebrowse = config_dir .. "/lain/icons/layout/default/cascadebrowsew.png"
+theme.layout_centerwork    = config_dir .. "/lain/icons/layout/default/centerworkw.png"
 
 theme.useless_gap_width = "5"
 
