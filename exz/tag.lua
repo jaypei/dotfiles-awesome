@@ -22,8 +22,8 @@ layouts = {
 
 tags = {
    names  = { "1.code", "2.code", "3.term", "4.term", "5", "6", "7", "8.mail", "9.web" },
-   layout = { layouts[1], layouts[1], layouts[2],
-              layouts[2], layouts[2], layouts[2],
+   layout = { layouts[1], layouts[1], layouts[3],
+              layouts[3], layouts[2], layouts[2],
               layouts[2], layouts[2], layouts[4] }
 }
 
