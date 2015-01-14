@@ -50,7 +50,7 @@ awful_rules.rules = {
       callback = awful.titlebar.add
    },
    {
-      rule_any = { class = { "Firefox", "Chromium-browser" } },
+      rule_any = { class = { "Firefox", "Chromium-browser", "Google-chrome" } },
       callback = make_move_client_tag(9)
    },
    {
