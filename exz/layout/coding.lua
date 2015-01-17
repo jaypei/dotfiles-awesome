@@ -38,10 +38,6 @@ function layout.arrange(p)
 
    -- How many vertical columns?
    local t = tag.selected(p.screen)
-   local num_x = layout.nmaster or tag.getnmaster(t)
-
-   -- Do at least "desired_y" rows.
-   local desired_y = layout.ncol or tag.getncol(t)
 
    local useless_gap_half = math.ceil(useless_gap / 2)
    local term_width = math.ceil(wa.width / 2.85) - useless_gap_half
@@ -77,23 +73,23 @@ function layout.arrange(p)
          end
 
          -- x
+         g.x = wa.x
          if block_idx <= 2 then
-            g.x = wa.x
          elseif block_idx == 3 then
-            g.x = term_width + useless_gap * 2
+            g.x = g.x + term_width + useless_gap * 2
             if is_focused then
                g.x = g.x - term_width_half
             end
          else
-            g.x = wa.x + zoom_in_gap
+            g.x = g.x + zoom_in_gap
          end
          -- y
+         g.y = wa.y
          if block_idx == 1 or block_idx == 3 then
-            g.y = wa.y
          elseif block_idx == 2 then
-            g.y = wa.y + term_height + useless_gap
+            g.y = g.y + term_height + useless_gap
          else
-            g.y = wa.y + zoom_in_gap
+            g.y = g.y + zoom_in_gap
          end
          -- width / height
          if block_idx <= 2 then
