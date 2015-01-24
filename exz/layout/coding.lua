@@ -52,47 +52,48 @@ function layout.arrange(p)
 
          -- set block index
          if i == #cls then
-            block_idx = 3
+            block_idx = "right"
          elseif i == #cls-1 then
-            block_idx = 2
+            if #cls == 2 then
+               block_idx = "left"
+            else
+               block_idx = "left-1"
+            end
          elseif i == #cls-2 then
-            block_idx = 1
+            block_idx = "left-2"
          else
-            block_idx = 99
+            block_idx = "other"
          end
 
          -- zoom in
-         if block_idx == 99 then
+         if block_idx == "other" then
             zoom_in_gap = zoom_in_gap + useless_gap * 4
          end
 
          -- x
          g.x = wa.x
-         if block_idx <= 2 then
-         elseif block_idx == 3 then
+         if block_idx == "right" then
             g.x = g.x + term_width + useless_gap
-            -- if is_focused then
-            -- g.x = g.x - term_width_half
-         else
+         elseif block_idx ~= "left-1" and block_idx ~= "left-2" and block_idx ~= "left" then
             g.x = g.x + zoom_in_gap
          end
          -- y
          g.y = wa.y
-         if block_idx == 1 or block_idx == 3 then
-         elseif block_idx == 2 then
+         if block_idx == "left-2" then
             g.y = g.y + term_height + useless_gap
-         else
+         elseif block_idx ~= "right" and block_idx ~= "left-1" and block_idx ~= "left" then
             g.y = g.y + zoom_in_gap
          end
          -- width / height
-         if block_idx <= 2 then
+         if block_idx == "left" then
+            g.width = term_width
+            g.height = wa.height
+         elseif block_idx == "left-1" or block_idx == "left-2" then
             g.width = term_width
             g.height = term_height
-         elseif block_idx == 3 then
+         elseif block_idx == "right" then
             g.width = editor_width
             g.height = editor_height
-            -- if is_focused then
-            -- g.width = g.width + term_width_half
          else
             g.width = wa.width - zoom_in_gap * 2
             g.height = wa.height - zoom_in_gap * 2
