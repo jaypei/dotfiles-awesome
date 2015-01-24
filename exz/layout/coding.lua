@@ -3,11 +3,8 @@
 -- Author: jaypei <jaypei97159@gmail.com>
 -----------------------------------------------------------------------------
 
-local tag       = require("awful.tag")
 local beautiful = require("beautiful")
-local math      = { ceil  = math.ceil,
-                    floor = math.floor,
-                    max   = math.max }
+local math      = { ceil  = math.ceil }
 local tonumber  = tonumber
 
 local layout = { name = "coding" }
@@ -35,9 +32,6 @@ function layout.arrange(p)
    -- Borders are factored in.
    wa.height = wa.height - ((global_border * 2) + (bw * 2))
    wa.width = wa.width - ((global_border * 2) + (bw * 2))
-
-   -- How many vertical columns?
-   local t = tag.selected(p.screen)
 
    local useless_gap_half = math.ceil(useless_gap / 2)
    local term_width = math.ceil(wa.width / 2.85) - useless_gap_half
@@ -76,10 +70,9 @@ function layout.arrange(p)
          g.x = wa.x
          if block_idx <= 2 then
          elseif block_idx == 3 then
-            g.x = g.x + term_width + useless_gap * 2
-            if is_focused then
-               g.x = g.x - term_width_half
-            end
+            g.x = g.x + term_width + useless_gap
+            -- if is_focused then
+            -- g.x = g.x - term_width_half
          else
             g.x = g.x + zoom_in_gap
          end
@@ -98,9 +91,8 @@ function layout.arrange(p)
          elseif block_idx == 3 then
             g.width = editor_width
             g.height = editor_height
-            if is_focused then
-               g.width = g.width + term_width_half
-            end
+            -- if is_focused then
+            -- g.width = g.width + term_width_half
          else
             g.width = wa.width - zoom_in_gap * 2
             g.height = wa.height - zoom_in_gap * 2
