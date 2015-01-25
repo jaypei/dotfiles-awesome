@@ -57,10 +57,10 @@ function layout.arrange(p)
             if #cls == 2 then
                block_idx = "left"
             else
-               block_idx = "left-1"
+               block_idx = "left-2"
             end
          elseif i == #cls-2 then
-            block_idx = "left-2"
+            block_idx = "left-1"
          else
             block_idx = "other"
          end

@@ -27,9 +27,9 @@ theme.border_focus_lowprio   = "#3333FF"
 theme.border_normal_lowprio  = "#333366"
 
 theme.border_width  = 1
-theme.border_normal = "#000000"
-theme.border_focus  = "#88FF00"
-theme.border_marked = "#333333"
+theme.border_normal = "#006666"
+theme.border_focus  = "#AAFF00"
+theme.border_marked = "#666600"
 
 
 -- | Menu | --
