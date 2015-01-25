@@ -60,5 +60,9 @@ awful_rules.rules = {
    {
       rule = { class = "Thunderbird" },
       callback = make_move_client_tag(8)
+   },
+   {
+      rule = { class = "VirtualBox" },
+      callback = make_move_client_tag(7)
    }
 }

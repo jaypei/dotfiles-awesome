@@ -21,20 +21,18 @@ layouts = {
 }
 
 tags = {
-   names  = { "1.code", "2.code", "3.term", "4.term", "5", "6", "7", "8.mail", "9.web" },
-   layout = { layouts[1], layouts[1], layouts[3],
-              layouts[3], layouts[2], layouts[2],
-              layouts[2], layouts[2], layouts[4] }
+   names  = { "C", "C", "T", "T", "O", "O", "VM", "MAIL", "WEB" },
+   layout = { layouts[1], layouts[1],
+              layouts[3], layouts[3],
+              layouts[2], layouts[2],
+              layouts[5], layouts[5], layouts[5] }
 }
 
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
    for i, t in ipairs(tags[s]) do
-      awful.tag.setproperty(t, "mwfact", i==8 and 0.13  or  0.5)
-      awful.tag.setproperty(t, "hide",  i > 4 and i < 8 and true)
+      -- awful.tag.setproperty(t, "mwfact", i==8 and 0.13  or  0.5)
+      -- awful.tag.setproperty(t, "hide",  i > 4 and i < 8 and true)
    end
-   -- awful.layout.set(lain.layout.termfair, tags[s][1])
-   -- awful.tag.setnmaster(2, tags[s][1])
-   -- awful.tag.setncol(1, tags[s][1])
    awful.screen.padding(screen[s], config.screen_padding)
 end
