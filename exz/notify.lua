@@ -1,12 +1,13 @@
 
 -- local config = require("exz.config")
 local naughty = require("naughty")
+local screen = screen
 
 module("exz.notify")
 
 -- naughty.config.defaults.screen = config.main_screen
-naughty.config.defaults.timeout = 30
-naughty.config.defaults.font = "Fantasque Sans Mono 20px"
+naughty.config.defaults.timeout = 5
+naughty.config.defaults.font = "Ubuntu Mono 20px"
 naughty.config.defaults.bg = "#551111"
 naughty.config.defaults.fg = "#FFFFFF"
 naughty.config.defaults.border_color = "#FF0000"
