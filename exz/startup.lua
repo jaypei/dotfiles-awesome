@@ -11,8 +11,8 @@ os.execute("pkill compton")
 
 -- should disable the fcitx option OverrideSystemXKBSettings
 utils.sexec("/usr/bin/xmodmap ~/.xmodmaprc")
--- utils.sexec_once("parcellite")
-utils.sexec_once("kbdd")
+utils.sexec_once("parcellite")
+-- utils.sexec_once("kbdd")
 -- utils.sexec_once("compton")
--- utils.sexec_once("gnome-sound-applet")
+utils.sexec_once("nm-applet &")
 utils.sexec_once("shutter --min_at_startup &")

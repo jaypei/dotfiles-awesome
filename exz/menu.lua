@@ -6,7 +6,7 @@ local awesome = awesome
 
 local awful = require("awful")
 local beautiful = require("beautiful")
-local debian_menu = require("debian.menu")
+-- local debian_menu = require("debian.menu")
 local config = require("exz.config")
 
 module("exz.menu")
@@ -27,7 +27,7 @@ mainmenu = awful.menu(
    {
       items = {
          { "awesome", myawesomemenu, beautiful.awesome_icon },
-         { "Debian", debian_menu.Debian_menu.Debian },
+         -- { "Debian", debian_menu.Debian_menu.Debian },
          { "open terminal", config.terminal }
       }
    }

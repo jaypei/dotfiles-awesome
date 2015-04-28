@@ -13,19 +13,17 @@ module("exz.tag")
 -- Window management layouts
 layouts = {
    exz_layout_coding,           -- 1
-   lain.layout.termfair,        -- 2
-   lain.layout.uselessfair,     -- 3
-   lain.layout.uselesstile,     -- 4
-   lain.layout.cascade,         -- 5
-   lain.layout.centerwork       -- 6
+   lain.layout.uselessfair,     -- 2
+   lain.layout.cascade,         -- 3
+   awful.layout.suit.floating   -- 4
 }
 
 tags = {
    names  = { "C", "C", "T", "T", "O", "O", "VM", "MAIL", "WEB" },
    layout = { layouts[1], layouts[1],
-              layouts[3], layouts[3],
               layouts[2], layouts[2],
-              layouts[5], layouts[5], layouts[5] }
+              layouts[4], layouts[4],
+              layouts[3], layouts[3], layouts[3] }
 }
 
 for s = 1, screen.count() do

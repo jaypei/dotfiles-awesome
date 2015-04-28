@@ -18,7 +18,6 @@ sexec = awful.util.spawn_with_shell
 
 function texec (cmd)
    local exec_cmd = config.terminal .. " -e sh -c \"" .. cmd .. "\""
-   print(exec_cmd)
    exec(exec_cmd)
 end
 

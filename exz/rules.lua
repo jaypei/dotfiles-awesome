@@ -41,7 +41,14 @@ awful_rules.rules = {
       }
    },
    {
-      rule_any = { class = { "desktop_window", "MPlayer", "pinentry" } },
+      rule_any = { class = {
+          "desktop_window", "MPlayer", "pinentry", "rdesktop",
+          "AliWangWang"
+      }},
+      properties = { floating = true }
+   },
+   {
+      rule = { class = "Firefox", name = "Youdao translation" },
       properties = { floating = true }
    },
    {
@@ -50,19 +57,23 @@ awful_rules.rules = {
       callback = awful.titlebar.add
    },
    {
-      rule_any = { class = { "Firefox", "Chromium-browser", "Google-chrome" } },
-      callback = make_move_client_tag(9)
+      rule = { class = "rdesktop" },
+      callback = make_move_client_tag(5)
    },
    {
-      rule = { class = "Firefox", name = "Youdao translation" },
-      properties = { floating = true }
+      rule = { class = "AliWangWang" },
+      callback = make_move_client_tag(6)
+   },
+   {
+      rule = { class = "VirtualBox" },
+      callback = make_move_client_tag(7)
    },
    {
       rule = { class = "Thunderbird" },
       callback = make_move_client_tag(8)
    },
    {
-      rule = { class = "VirtualBox" },
-      callback = make_move_client_tag(7)
+      rule_any = { class = { "Firefox", "Chromium-browser", "Google-chrome" } },
+      callback = make_move_client_tag(9)
    }
 }

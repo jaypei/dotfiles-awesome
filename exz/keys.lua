@@ -31,8 +31,6 @@ root.buttons(awful.util.table.join(
 
 -- | Key bindings | --
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "w",      function () exz_menu.mainmenu:show() end),
@@ -83,7 +81,8 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey }, "r", function ()
-          exz_wibox.mypromptbox[mouse.screen]:run()
+          exec("env SHELL=/usr/bin/zsh dmenu_run")
+          -- exz_wibox.mypromptbox[mouse.screen]:run()
     end),
 
     awful.key({ modkey }, "x", function ()
