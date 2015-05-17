@@ -46,7 +46,7 @@ theme.layout_cascade       = config_dir .. "/lain/icons/layout/default/cascadew.
 theme.layout_cascadebrowse = config_dir .. "/lain/icons/layout/default/cascadebrowsew.png"
 theme.layout_centerwork    = config_dir .. "/lain/icons/layout/default/centerworkw.png"
 
-theme.useless_gap_width = "5"
+theme.useless_gap_width = "10"
 
 
 -- | Taglist | --
