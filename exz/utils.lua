@@ -29,3 +29,8 @@ function sexec_once(cmd)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
+
+function gexec(cmd)
+   local exec_cmd = "/usr/bin/zsh -c \". ~/.exz-profile; " .. cmd .. "\""
+   exec(exec_cmd)
+end

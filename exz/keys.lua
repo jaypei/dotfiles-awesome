@@ -20,6 +20,7 @@ local cyclefocus = require("cyclefocus")
 local home   = config.home
 local exec   = utils.exec
 local shexec = utils.sexec
+local gexec = utils.gexec
 
 module("exz.keys")
 
@@ -73,7 +74,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
     awful.key({ modkey, "Control" }, "r",      awesome.restart),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
-    awful.key({ modkey,           }, "Return", function () exec(config.terminal) end),
+    -- awful.key({ modkey,           }, "Return", function () exec(config.terminal) end),
+    awful.key({ modkey,           }, "Return", function ()
+        gexec("urxvt")
+    end),
     awful.key({ modkey,           }, "s",      function () exec(config.filemanager) end),
     awful.key({ modkey            }, "Print",  function () exec("gnome-screenshot") end),
     awful.key({ modkey            }, "a",      function () exec("shutter -s -e") end),
@@ -81,8 +85,8 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey }, "r", function ()
-          exec("env SHELL=/usr/bin/zsh /home/jaypei/bin/dmenu_run")
-          -- exz_wibox.mypromptbox[mouse.screen]:run()
+        gexec("~/bin/dmenu_run")
+        -- exz_wibox.mypromptbox[mouse.screen]:run()
     end),
 
     awful.key({ modkey }, "x", function ()
