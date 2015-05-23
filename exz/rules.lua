@@ -7,6 +7,7 @@ local screen = screen
 local config = require("exz.config")
 local mouse = mouse
 local awful_rules = require("awful.rules")
+local awful_placement = require("awful.placement")
 
 module("exz.rules")
 
@@ -75,5 +76,10 @@ awful_rules.rules = {
    {
       rule_any = { class = { "Firefox", "Chromium-browser", "Google-chrome" } },
       callback = make_move_client_tag(9)
+   },
+   {
+      rule_any = { class = { "gcr-prompter", "Gcr-prompter" } },
+      properties = { opacity = 0.9 },
+      callback = awful_placement.centered
    }
 }

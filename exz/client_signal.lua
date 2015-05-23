@@ -62,5 +62,14 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", lain_util.niceborder_focus)
-client.connect_signal("unfocus", lain_util.niceborder_unfocus)
+client.connect_signal(
+   "focus", function (c)
+      c.opacity = 1
+      lain_util.niceborder_focus(c)
+end)
+
+client.connect_signal(
+   "unfocus", function (c)
+      c.opacity = 0.8
+      lain_util.niceborder_unfocus(c)
+end)
