@@ -5,7 +5,7 @@ theme            = {}
 theme.icons      = config_dir .. "/themes/exz/icons/"
 theme.wallpaper  = config_dir .. "/themes/exz/wall.png"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font       = "Fantastic Mono 10"
+theme.font       = "Monofur 10"
 
 theme.fg_normal  = "#888888"
 theme.fg_focus   = "#e4e4e4"

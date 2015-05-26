@@ -81,5 +81,11 @@ awful_rules.rules = {
       rule_any = { class = { "gcr-prompter", "Gcr-prompter" } },
       properties = { opacity = 0.9 },
       callback = awful_placement.centered
+   },
+   {
+      rule_any = { class = { "QunarIM" } },
+      properties = {
+         border_width = 0
+      }
    }
 }
