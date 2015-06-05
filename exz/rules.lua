@@ -41,51 +41,64 @@ awful_rules.rules = {
          size_hints_honor = false
       }
    },
+   -- floating
    {
       rule_any = { class = {
           "desktop_window", "MPlayer", "pinentry", "rdesktop",
-          "AliWangWang"
       }},
       properties = { floating = true }
    },
-   {
-      rule = { class = "Firefox", name = "Youdao translation" },
-      properties = { floating = true }
-   },
+   -- emacs
    {
       rule = { class = "Emacs", instance = "_Remember_" },
       properties = { floating = true },
       callback = awful.titlebar.add
    },
+   -- qtalk
    {
-      rule = { class = "rdesktop" },
+      rule = { class = "QunarIM" },
+      properties = {
+          floating = true,
+          border_width = 0
+      },
       callback = make_move_client_tag(5)
    },
+   -- aliwangwang
    {
       rule = { class = "AliWangWang" },
+      properties = {
+          floating = true,
+          border_width = 0
+      },
       callback = make_move_client_tag(6)
    },
+   -- virtualbox
    {
       rule = { class = "VirtualBox" },
       callback = make_move_client_tag(7)
    },
+   { 
+      rule = { class = "VirtualBox", name = "Oracle VM VirtualBox Manager" },
+      properties = { floating = true }
+   },
+   -- thunderbird
    {
       rule = { class = "Thunderbird" },
       callback = make_move_client_tag(8)
    },
+   -- web browser
    {
       rule_any = { class = { "Firefox", "Chromium-browser", "Google-chrome" } },
       callback = make_move_client_tag(9)
    },
    {
+      rule = { class = "Firefox", name = "Youdao translation" },
+      properties = { floating = true }
+   },
+   -- Password prompt
+   {
       rule_any = { class = { "gcr-prompter", "Gcr-prompter" } },
       properties = { opacity = 0.9 },
       callback = awful_placement.centered
    },
-   {
-      rule_any = { class = { "QunarIM" } },
-      properties = {
-         border_width = 0
-      }
-   }
 }
