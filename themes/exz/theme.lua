@@ -5,7 +5,7 @@ theme            = {}
 theme.icons      = config_dir .. "/themes/exz/icons/"
 theme.wallpaper  = config_dir .. "/themes/exz/wall.png"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font       = "Monofur 10"
+theme.font       = "hh monofur 10"
 
 theme.fg_normal  = "#888888"
 theme.fg_focus   = "#e4e4e4"
@@ -46,7 +46,7 @@ theme.layout_cascade       = config_dir .. "/lain/icons/layout/default/cascadew.
 theme.layout_cascadebrowse = config_dir .. "/lain/icons/layout/default/cascadebrowsew.png"
 theme.layout_centerwork    = config_dir .. "/lain/icons/layout/default/centerworkw.png"
 
-theme.useless_gap_width = "10"
+theme.useless_gap_width = "8"
 
 
 -- | Taglist | --
