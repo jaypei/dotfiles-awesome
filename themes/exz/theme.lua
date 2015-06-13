@@ -5,7 +5,7 @@ theme            = {}
 theme.icons      = config_dir .. "/themes/exz/icons/"
 theme.wallpaper  = config_dir .. "/themes/exz/wall.png"
 theme.panel      = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font       = "hh monofur 10"
+theme.font       = "Ubuntu Mono 11"
 
 theme.fg_normal  = "#888888"
 theme.fg_focus   = "#e4e4e4"
@@ -55,7 +55,7 @@ theme.useless_gap_width = "8"
 -- theme.taglist_bg_occupied = "png:" .. theme.icons .. "panel/taglist/occupied.png"
 -- theme.taglist_bg_urgent   = "png:" .. theme.icons .. "panel/taglist/urgent.png"
 -- theme.taglist_bg_focus    = "png:" .. theme.icons .. "panel/taglist/focus.png"
-theme.taglist_font        = "Fantasque Sans Mono 10"
+theme.taglist_font = theme.font
 
 -- | Tasklist | --
 
