@@ -10,27 +10,27 @@ module("exz.utils")
 
 local oldspawn = awful.util.spawn
 awful.util.spawn = function (s)
-    oldspawn(s, false)
+  oldspawn(s, false)
 end
 
 exec   = function (s) oldspawn(s, false) end
 sexec = awful.util.spawn_with_shell
 
 function texec (cmd)
-   local exec_cmd = config.terminal .. " -e sh -c \"" .. cmd .. "\""
-   exec(exec_cmd)
+  local exec_cmd = config.terminal .. " -e sh -c \"" .. cmd .. "\""
+  exec(exec_cmd)
 end
 
 function sexec_once(cmd)
   findme = cmd
   firstspace = cmd:find(" ")
   if firstspace then
-     findme = cmd:sub(0, firstspace-1)
+    findme = cmd:sub(0, firstspace-1)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
 function gexec(cmd)
-   local exec_cmd = "/usr/bin/zsh -c \". ~/.exz-profile; " .. cmd .. "\""
-   exec(exec_cmd)
+  local exec_cmd = "/usr/bin/zsh -c \". ~/.exz-profile; " .. cmd .. "\""
+  exec(exec_cmd)
 end
