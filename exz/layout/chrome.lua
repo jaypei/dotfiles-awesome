@@ -8,6 +8,14 @@ local tonumber  = tonumber
 
 local layout = { name = "chrome" }
 
+function is_sidebar (c)
+  return
+    -- Chrome Tabs Outline
+    c.instance == "crx_eggkanocgddhmamlbiijnphhppkpkmkl" or
+    -- QTalk
+    c.name == "Qunar IM"
+end
+
 function layout.arrange(p)
 
   -- A useless gap (like the dwm patch) can be defined with
@@ -32,10 +40,8 @@ function layout.arrange(p)
   wa.height = wa.height - ((global_border * 2) + (bw * 2))
   wa.width = wa.width - ((global_border * 2) + (bw * 2))
 
-  local chrome_sidebar_instance = "crx_eggkanocgddhmamlbiijnphhppkpkmkl"
   local chrome_sidebar_width = 300
   local chrome_sidebar_orientat = "left"
-
 
   if #cls > 0 then
     local c
@@ -43,7 +49,7 @@ function layout.arrange(p)
     for i = #cls,1,-1 do
       c = cls[i]
       -- sidebar
-      if c.instance == chrome_sidebar_instance then
+      if is_sidebar(c) then
         g.width = chrome_sidebar_width
         if chrome_sidebar_orientat == "left" then
           g.x = wa.x

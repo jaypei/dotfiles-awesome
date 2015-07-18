@@ -21,10 +21,11 @@ layouts = {
 }
 
 tags = {
-  names  = { "C", "C", "T", "T", "O", "O", "VM", "MAIL", "WEB" },
-  layout = { layouts[1], layouts[1],
+  names  = { "T", "T", "T", "T", "Q", "O", "VM", "MAIL", "WEB" },
+  layout = { layouts[2], layouts[2],
              layouts[2], layouts[2],
-             layouts[4], layouts[4],
+             layouts[5],
+             layouts[4],
              layouts[3], layouts[3], layouts[5] }
 }
 
