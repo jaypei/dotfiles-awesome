@@ -12,7 +12,7 @@ browser = "firefox"
 filemanager = "thunar"
 
 main_screen = 1
-screen_padding = { left = 10, top = 10, right = 10, bottom = 10 }
+screen_padding = { left = 0, top = 0, right = 0, bottom = 0 }
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

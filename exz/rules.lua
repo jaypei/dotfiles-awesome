@@ -63,6 +63,19 @@ awful_rules.rules = {
     },
     callback = make_move_client_tag(5)
   },
+  {
+    rule = { class = "QunarIM", name = "SearchResultDialog" },
+    properties = {
+      floating = true
+    }
+  },
+  {
+    rule = { class = "QunarIM", name = "群设置" },
+    properties = {
+      floating = true
+    },
+    callback = awful_placement.centered
+  },
   -- aliwangwang
   {
     rule = { class = "AliWangWang" },
@@ -99,6 +112,11 @@ awful_rules.rules = {
   {
     rule_any = { class = { "gcr-prompter", "Gcr-prompter" } },
     properties = { opacity = 0.9 },
+    callback = awful_placement.centered
+  },
+  -- GtkFileChooserDialog
+  {
+    rule = { role = "GtkFileChooserDialog" },
     callback = awful_placement.centered
   },
 }

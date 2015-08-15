@@ -11,9 +11,7 @@ local layout = { name = "chrome" }
 function is_sidebar (c)
   return
     -- Chrome Tabs Outline
-    c.instance == "crx_eggkanocgddhmamlbiijnphhppkpkmkl" or
-    -- QTalk
-    c.name == "Qunar IM"
+    c.instance == "crx_eggkanocgddhmamlbiijnphhppkpkmkl"
 end
 
 function layout.arrange(p)
@@ -46,27 +44,41 @@ function layout.arrange(p)
   if #cls > 0 then
     local c
     local g = {}
+    local has_sidebar = false
+    for i = #cls, 1, -1 do
+      c = cls[i]
+      if is_sidebar(c) then
+        has_sidebar = true
+      end
+    end
     for i = #cls,1,-1 do
       c = cls[i]
       -- sidebar
-      if is_sidebar(c) then
-        g.width = chrome_sidebar_width
-        if chrome_sidebar_orientat == "left" then
-          g.x = wa.x
+      if has_sidebar then
+        if is_sidebar(c) then
+          g.width = chrome_sidebar_width
+          if chrome_sidebar_orientat == "left" then
+            g.x = wa.x
+          else
+            g.x = wa.width - chrome_sidebar_width + useless_gap
+          end
+          g.y = wa.y
+          g.width = chrome_sidebar_width
+          g.height = wa.height
         else
-          g.x = wa.width - chrome_sidebar_width + useless_gap
+          if chrome_sidebar_orientat == "left" then
+            g.x = wa.x + chrome_sidebar_width + useless_gap
+          else
+            g.x = wa.x
+          end
+          g.y = wa.y
+          g.width = wa.width - chrome_sidebar_width - useless_gap
+          g.height = wa.height
         end
-        g.y = wa.y
-        g.width = chrome_sidebar_width
-        g.height = wa.height
       else
-        if chrome_sidebar_orientat == "left" then
-          g.x = chrome_sidebar_width + useless_gap * 2
-        else
-          g.x = wa.x
-        end
+        g.x = wa.x
         g.y = wa.y
-        g.width = wa.width - chrome_sidebar_width - useless_gap
+        g.width = wa.width
         g.height = wa.height
       end
 

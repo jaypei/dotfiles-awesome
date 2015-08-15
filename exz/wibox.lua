@@ -37,54 +37,34 @@ widget_display_c:set_image(beautiful.widget_display_c)
 
 
 -- | CPU / TMP | --
-widget_cpu = require("exz.widgets.cpu")
+-- widget_cpu = require("exz.widgets.cpu")
 
 -- | MEM | --
-widget_mem = require("exz.widgets.mem")
+-- widget_mem = require("exz.widgets.mem")
 
 -- | FS | --
-widget_fs = require("exz.widgets.fs")
+-- widget_fs = require("exz.widgets.fs")
 
 -- | NET | --
-widget_net = require("exz.widgets.net")
+-- widget_net = require("exz.widgets.net")
 
 -- | NET | --
 widget_battery = require("exz.widgets.battery")
 
 -- | Clock / Calendar | --
-
-mytextclock    = awful.widget.textclock(markup(markups.clockgf, markups.space3 .. "%H:%M" .. markup.font("Tamsyn 3", " ")))
-mytextcalendar = awful.widget.textclock(markup(markups.clockgf, markups.space3 .. "%Y-%m-%d"))
-
-widget_clock = wibox.widget.imagebox()
-widget_clock:set_image(beautiful.widget_clock)
-
-clockwidget = wibox.widget.background()
-clockwidget:set_widget(mytextclock)
-clockwidget:set_bgimage(beautiful.widget_display)
-
-local index = 1
-local loop_widgets = { mytextclock, mytextcalendar }
-local loop_widgets_icons = { beautiful.widget_clock, beautiful.widget_cal }
-
-clockwidget:buttons(awful.util.table.join(awful.button({}, 1,
-    function ()
-        index = index % #loop_widgets + 1
-        clockwidget:set_widget(loop_widgets[index])
-        widget_clock:set_image(loop_widgets_icons[index])
-    end)))
+widget_clock = require("exz.widgets.clock")
 
 -- | Taglist | --
 
 mytaglist         = {}
-mytaglist.buttons = awful.util.table.join(
-                    awful.button({ }, 1, awful.tag.viewonly),
-                    awful.button({ modkey }, 1, awful.client.movetotag),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
-                    )
+-- mytaglist.buttons = awful.util.table.join(
+--                     awful.button({ }, 1, awful.tag.viewonly),
+--                     awful.button({ modkey }, 1, awful.client.movetotag),
+--                     awful.button({ }, 3, awful.tag.viewtoggle),
+--                     awful.button({ modkey }, 3, awful.client.toggletag),
+--                     awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
+--                     awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
+--                     )
 
 -- | Tasklist | --
 
@@ -159,39 +139,39 @@ for s = 1, screen.count() do
        right_layout:add(spr5px)
     end
 
-    right_layout:add(spr)
+    -- right_layout:add(spr)
 
-    right_layout:add(widget_cpu["icon"])
-    right_layout:add(widget_display_l)
-    right_layout:add(widget_cpu["widget"])
-    right_layout:add(widget_display_r)
-    right_layout:add(spr5px)
+    -- right_layout:add(widget_cpu["icon"])
+    -- right_layout:add(widget_display_l)
+    -- right_layout:add(widget_cpu["widget"])
+    -- right_layout:add(widget_display_r)
+    -- right_layout:add(spr5px)
 
-    right_layout:add(spr)
+    -- right_layout:add(spr)
 
-    right_layout:add(widget_mem["icon"])
-    right_layout:add(widget_display_l)
-    right_layout:add(widget_mem["widget"])
-    right_layout:add(widget_display_r)
-    right_layout:add(spr5px)
+    -- right_layout:add(widget_mem["icon"])
+    -- right_layout:add(widget_display_l)
+    -- right_layout:add(widget_mem["widget"])
+    -- right_layout:add(widget_display_r)
+    -- right_layout:add(spr5px)
 
-    right_layout:add(spr)
+    -- right_layout:add(spr)
 
-    right_layout:add(widget_fs["icon"])
-    right_layout:add(widget_display_l)
-    right_layout:add(widget_fs["widget"])
-    right_layout:add(widget_display_r)
-    right_layout:add(spr5px)
+    -- right_layout:add(widget_fs["icon"])
+    -- right_layout:add(widget_display_l)
+    -- right_layout:add(widget_fs["widget"])
+    -- right_layout:add(widget_display_r)
+    -- right_layout:add(spr5px)
 
-    right_layout:add(spr)
+    -- right_layout:add(spr)
 
-    right_layout:add(widget_net["dl_icon"])
-    right_layout:add(widget_display_l)
-    right_layout:add(widget_net["dl_widget"])
-    right_layout:add(widget_display_c)
-    right_layout:add(widget_net["ul_widget"])
-    right_layout:add(widget_display_r)
-    right_layout:add(widget_net["ul_icon"])
+    -- right_layout:add(widget_net["dl_icon"])
+    -- right_layout:add(widget_display_l)
+    -- right_layout:add(widget_net["dl_widget"])
+    -- right_layout:add(widget_display_c)
+    -- right_layout:add(widget_net["ul_widget"])
+    -- right_layout:add(widget_display_r)
+    -- right_layout:add(widget_net["ul_icon"])
 
     right_layout:add(spr)
 
@@ -203,9 +183,9 @@ for s = 1, screen.count() do
 
     right_layout:add(spr)
 
-    right_layout:add(widget_clock)
+    right_layout:add(widget_clock["icon"])
     right_layout:add(widget_display_l)
-    right_layout:add(clockwidget)
+    right_layout:add(widget_clock["widget"])
     right_layout:add(widget_display_r)
     right_layout:add(spr5px)
 
